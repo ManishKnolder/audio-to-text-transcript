@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio to Summary</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .upload-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .upload-btn {
+            font-size: 18px;
+        }
+        .spinner-border {
+            display: none;
+        }
+        .uploading-text {
+            display: none;
+        }
+        .uploading .spinner-border {
+            display: inline-block;
+        }
+        .uploading .uploading-text {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 upload-container">
+                <h1 class="mb-4">Upload Video</h1>
+                <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+                    <div class="custom-file mb-3">
+                        <input type="file" class="custom-file-input" id="file-input" name="file">
+                        <label class="custom-file-label" for="file-input">Choose file</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary upload-btn">Convert</button>
+                    <div class="uploading mt-3">
+                        <div class="spinner-border text-primary" role="status"></div>
+                        <span class="uploading-text ml-2">Uploading...</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#upload-form').submit(function() {
+                $('.upload-btn').hide();
+                $('.uploading').show();
+            });
+    
+            $('#file-input').change(function() {
+                $('.uploading').hide();
+                $('.upload-btn').show();
+            });
+        });
+    </script>
+    
+</body>
+</html>
